@@ -36,7 +36,7 @@ public class WL_Import {
             
            
             
-            BufferedReader in = new BufferedReader(new FileReader("e:\\patrick.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("c:\\patrick.txt"));
             String str;
             List<String> towns=new ArrayList();
             List<String> counties=new ArrayList();
@@ -51,21 +51,21 @@ public class WL_Import {
             in.close();
             
             
-//            List<String> completeCounties=new ArrayList();
-//            
-//            for(String county:counties){
-//                
-//                boolean exists=false;
-//                for(String realCounty:completeCounties){
-//                    if(county.equals(realCounty)){
-//                       exists=true;                       
-//                       break;
-//                    }
-//                }
-//                if(!exists){
-//                    completeCounties.add(county);                    
-//                }
-//            }
+            List<String> completeCounties=new ArrayList();
+            
+            for(String county:counties){
+                
+                boolean exists=false;
+                for(String realCounty:completeCounties){
+                    if(county.equals(realCounty)){
+                       exists=true;                       
+                       break;
+                    }
+                }
+                if(!exists){
+                    completeCounties.add(county);                    
+                }
+            }
              
             
              
@@ -116,6 +116,9 @@ public class WL_Import {
 //            System.out.println("Number of couties:"+counties.size());
             
         } catch (Exception e) {
+        
+        System.out.println(e.getMessage());
+        
         }
 
 

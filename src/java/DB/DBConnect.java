@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.DriverManager;
 
 /**
  *
@@ -36,8 +37,18 @@ public class DBConnect {
 
    
     
-    public DBConnect(){
-        createConnection();
+    public DBConnect() {
+        try {
+            createConnection();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     /**
      * 
@@ -50,20 +61,16 @@ public class DBConnect {
     
     /**
      * 
+     * @throws InstantiationException 
      */
-    private static void createConnection()
+    private static void createConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
     {
-        try
-        {
+      
             Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
             //Get a connection
             setConn(DriverManager.getConnection(dbURL)); 
             
-        }
-        catch (Exception except)
-        {
-            except.printStackTrace();
-        }
+       
     }
 
     public void insertCounties(List<String> completeCounties) throws SQLException {
@@ -115,7 +122,7 @@ public class DBConnect {
 
 
             String insertCountySql = "INSERT INTO WL_TOWNS (C_ID,NAME) VALUES (" + cid + ",'" + town + "')";
-            //System.out.println(insertCountySql);
+            System.out.println(insertCountySql);
             int result = sta.executeUpdate(insertCountySql);
             System.out.println(insertCountySql);
             sta.close();
