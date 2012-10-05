@@ -79,15 +79,13 @@ public class DBConnect {
         
         
          
-       for(String town:completeCounties){   
-           Statement sta = conn.createStatement();
-           insertCountySql=insertCountySql+town+"')";
-         
-           int res=sta.executeUpdate(insertCountySql);
-            
-           sta.close();
-           insertCountySql="INSERT INTO WL_COUNTIES (NAME) VALUES ('";
-       }
+        for (String county : completeCounties) {
+            Statement sta = conn.createStatement();
+            insertCountySql = insertCountySql + county + "')";
+            int res = sta.executeUpdate(insertCountySql);
+            sta.close();
+            insertCountySql = "INSERT INTO WL_COUNTIES (NAME) VALUES ('";
+        }
         
     }
 

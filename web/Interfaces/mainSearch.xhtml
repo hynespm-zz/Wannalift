@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Counties</title>
+    </h:head>
+    <body>
+
+        <h:form id="form">
+
+            <p:growl id="msgs" showDetail="true"/>
+
+            <p:panel header="Search" style="margin-bottom:10px;">
+                <h:panelGrid columns="3" cellpadding="5">
+                    
+                    <h:outputText id="from" value="From:"></h:outputText>                   
+
+                    <p:selectOneMenu id="startTown" value="#{mainSearchBean.startTown}">
+                        <f:selectItem itemLabel="Select Town" itemValue="" />
+                        <f:selectItems value="#{mainSearchBean.townNames}" />
+                    </p:selectOneMenu>
+                    
+                    
+                    <p:selectOneMenu id="startCounty" value="#{mainSearchBean.startCounty}">
+                        <f:selectItem itemLabel="Select County" itemValue="" />
+                        <f:selectItems value="#{mainSearchBean.countyNames}" />
+                        <p:ajax update="startTown"
+                                listener="#{mainSearchBean.updateStartTowns}" />
+                    </p:selectOneMenu>
+                    
+                    <br />
+                    
+                    <h:outputText id="from" value="To:"></h:outputText>
+                    
+                     <p:selectOneMenu id="endTown" value="#{mainSearchBean.endTown}">
+                        <f:selectItem itemLabel="Select Town" itemValue="" />
+                        <f:selectItems value="#{mainSearchBean.townNames}" />
+                    </p:selectOneMenu>
+                    
+                    
+                    <p:selectOneMenu id="endCounty" value="#{mainSearchBean.endCounty}">
+                        <f:selectItem itemLabel="Select County" itemValue="" />
+                        <f:selectItems value="#{mainSearchBean.countyNames}" />
+                        <p:ajax update="endCounty"
+                                listener="#{mainSearchBean.updateTowns}" />
+                    </p:selectOneMenu>
+                   
+                </h:panelGrid>
+
+                
+
+                <p:commandButton value="Submit" update="msgs" actionListener="#{mainSearchBean.search}" id="btnSubmit"/>
+
+            </p:panel>
+
+        </h:form>
+
+    </body>
+</html>

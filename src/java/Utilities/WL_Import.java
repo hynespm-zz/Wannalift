@@ -36,18 +36,24 @@ public class WL_Import {
             
            
             
-            BufferedReader in = new BufferedReader(new FileReader("c:\\patrick.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("c:\\irishtownlands.csv"));
             String str;
             List<String> towns=new ArrayList();
             List<String> counties=new ArrayList();
-            System.out.println("Hi");
+            List<String> lat=new ArrayList();
+            List<String> lon=new ArrayList();
+            
              connect=new DBConnect();
             while ((str = in.readLine()) != null) {                
-                    String[] temp = str.split("\t");
+                    str=str.replaceAll("'", "");
+                    String[] temp = str.split("\t");                    
+                    
                     towns.add(temp[0]);
                     counties.add(temp[1]);
+                    lat.add(temp[2]);
+                    lon.add(temp[3]);
                 }
-            System.out.println(towns.size());
+          
             in.close();
             
             
@@ -68,10 +74,10 @@ public class WL_Import {
             }
              
             
+             System.out.println(completeCounties.size());
              
-             
-             //connect.insertCounties(completeCounties);
-             connect.insertTowns(towns,counties);
+             connect.insertCounties(completeCounties);
+          //   connect.insertTowns(towns,counties);
              
              
          
