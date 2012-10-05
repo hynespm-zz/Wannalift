@@ -26,6 +26,7 @@ public class MainSearchBean {
      private WlTcRegionsFacade regionFaccade;
      private WlTcCountriesFacade countriesFaccade;
      private WlTcTownsFacade townFaccade;
+     private String patrick;
      
      
      
